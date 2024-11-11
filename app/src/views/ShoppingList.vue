@@ -2,77 +2,24 @@
   <div class="shopping-list">
     <TitleComponent text="Lista de Compras" />
     <div class="shopping-list__category-list">
-      <div
-        v-for="(category, categoryIndex) in productCategories"
-        :key="categoryIndex"
-        class="shopping-list__category"
-      >
-        <h3 class="shopping-list__category-title">
-          <i :class="category.icon" class="shopping-list__category-icon"></i>
-          {{ category.name }}
-        </h3>
-        <div
-          v-for="(productGroup, groupIndex) in category.groups"
-          :key="groupIndex"
-          class="shopping-list__group"
-        >
-          <h4 class="shopping-list__group-title">
-            <i :class="productGroup.icon" class="shopping-list__group-icon"></i>
-            {{ productGroup.name }}
-          </h4>
-          <ul class="shopping-list__items">
-            <li
-              v-for="(product, productIndex) in productGroup.items"
-              :key="productIndex"
-              class="shopping-list__item"
-            >
-              <span class="shopping-list__item-name">{{ product.name }}</span>
-              <input
-                type="number"
-                min="1"
-                v-model="product.quantity"
-                class="shopping-list__input"
-                @change="updateList(category.name, productGroup.name, product)"
-              />
-              <button
-                class="shopping-list__button"
-                @click="addToShoppingList(product)"
-              >
-                <i class="fas fa-cart-plus"></i> Adicionar
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <CategoryList
+        v-for="(category, index) in productCategories"
+        :key="index"
+        :category="category"
+        @add-to-list="addToShoppingList"
+        @update-list="updateList"
+      />
     </div>
 
     <TitleComponent text="Sua Lista de Compras" />
-    <ul class="shopping-list__shopping-list">
-      <li
-        v-for="(item, index) in shoppingList"
-        :key="index"
-        class="shopping-list__shopping-item"
-      >
-        <span class="shopping-list__item-name"
-          >{{ item.name }} - {{ item.quantity }}</span
-        >
-        <button
-          class="shopping-list__remove-button"
-          @click="removeFromShoppingList(index)"
-        >
-          <i class="fas fa-trash"></i> Remover
-        </button>
-      </li>
-    </ul>
+    <ShoppingListComponent
+      :items="shoppingList"
+      @remove="removeFromShoppingList"
+    />
 
     <div class="shopping-list__button-container">
-      <button class="shopping-list__share-button" @click="shareList">
-        <i class="fab fa-whatsapp"></i> Compartilhar via WhatsApp
-      </button>
-
-      <button class="shopping-list__logout-button" @click="logout">
-        <i class="fas fa-sign-out-alt"></i> Sair
-      </button>
+      <ShareButton @share="shareList" />
+      <LogoutButton @logout="logout" />
     </div>
   </div>
 </template>
@@ -81,10 +28,18 @@
 import { signOut } from 'firebase/auth'
 import { auth } from '@/firebaseConfig'
 import TitleComponent from '@/components/TitleComponent.vue'
+import CategoryList from '@/components/CategoryListVue.vue'
+import ShoppingListComponent from '@/components/ShoppingListComponent.vue'
+import ShareButton from '@/components/ShareButton.vue'
+import LogoutButton from '@/components/LogoutButton.vue'
 
 export default {
   components: {
     TitleComponent,
+    CategoryList,
+    ShoppingListComponent,
+    ShareButton,
+    LogoutButton,
   },
   data() {
     return {
@@ -155,7 +110,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
 .shopping-list {
