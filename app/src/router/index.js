@@ -4,7 +4,7 @@ import Login from '@/components/LoginComponent.vue'
 import Register from '@/components/RegisterComponent.vue'
 import ShoppingList from '@/views/ShoppingList.vue'
 import { auth } from '@/firebaseConfig'
-import store from '@/store'  // Importando o Vuex store
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -27,16 +27,15 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-  const isAuthenticated = store.getters.isAuthenticated || auth.currentUser;  // Verificando o estado de login no Vuex
+  const isAuthenticated = store.getters.isAuthenticated || auth.currentUser;
 
   if (requiresAuth && !isAuthenticated) {
-    next('/login');  // Se precisar de autenticação e o usuário não estiver autenticado
+    next('/login');
   } else {
     next();
   }
 });
 
-// Verificar o estado de autenticação no início da aplicação
-store.dispatch('checkAuthentication');  // Chama a ação que verifica o estado do usuário
+store.dispatch('checkAuthentication');
 
 export default router
