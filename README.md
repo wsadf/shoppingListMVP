@@ -1,5 +1,3 @@
-# shoppingListMVP
-
 # Lista de compras
 Projeto de Listas, no qual é possível adicionar, remover e compartilhar no whatsapp.
 
