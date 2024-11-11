@@ -1,6 +1,6 @@
 <template>
   <div class="shopping-list">
-    <h2 class="shopping-list__title">Lista de Compras</h2>
+    <TitleComponent text="Lista de Compras" />
     <div class="shopping-list__category-list">
       <div
         v-for="(category, categoryIndex) in productCategories"
@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <h2 class="shopping-list__title">Sua Lista de Compras</h2>
+    <TitleComponent text="Sua Lista de Compras" />
     <ul class="shopping-list__shopping-list">
       <li
         v-for="(item, index) in shoppingList"
@@ -80,8 +80,12 @@
 <script>
 import { signOut } from 'firebase/auth'
 import { auth } from '@/firebaseConfig'
+import TitleComponent from '@/components/TitleComponent.vue'
 
 export default {
+  components: {
+    TitleComponent,
+  },
   data() {
     return {
       productCategories: [

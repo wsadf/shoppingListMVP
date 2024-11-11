@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <h2 class="login__title">Bem-vindo de volta!</h2>
+    <TitleComponent text="Bem-vindo de volta!" />
     <form class="login__form" @submit.prevent="login">
       <input
         v-model="email"
@@ -30,8 +30,12 @@
 <script>
 import { auth } from '@/firebaseConfig'
 import { signInWithEmailAndPassword } from 'firebase/auth'
+import TitleComponent from '@/components/TitleComponent.vue'
 
 export default {
+  components: {
+    TitleComponent,
+  },
   data() {
     return {
       email: '',

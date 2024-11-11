@@ -1,7 +1,7 @@
 <template>
   <div class="register">
     <div class="register__container">
-      <h2 class="register__title">Crie sua conta</h2>
+      <TitleComponent text="Crie sua conta" />
       <form @submit.prevent="register" class="register__form">
         <input
           v-model="email"
@@ -30,8 +30,12 @@
 <script>
 import { auth } from '@/firebaseConfig'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
+import TitleComponent from '@/components/TitleComponent.vue'
 
 export default {
+  components: {
+    TitleComponent,
+  },
   data() {
     return {
       email: '',
