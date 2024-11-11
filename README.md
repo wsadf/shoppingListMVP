@@ -9,15 +9,6 @@ Projeto de Listas, no qual é possível adicionar, remover e compartilhar no wha
 
 **Firebase Google Login:** simplifica o processo de autenticação de usuários com Google, fornecendo APIs para permitir login de maneira fácil e segura.
 
-### Projeto composto por:
-- Foi adicionado um input CEP no cadastro, que ao inserir o cep correto, automaticamente já são carregados os campos de bairro, endereço e cidade utilizando da import **ApiCep from '@/api/cep**.
-- Senão tiver nenhum registro cadastrado é exibido uma tela com a frase "Você ainda não possui nenhum contato cadastrado.", com um botão para redirecionar para a página de cadastros.
-- Ao inserir uma url inválida é exibida uma pagina de erro.
-- Após o cadastro ser realizado com sucesso é possivel visualizar(modal), editar e excluir o registro.
-- Modal com a visualização do contato cadastrado.
-- Ao interromper o JSON Server é exibido um aviso na tela de cadastro "Desculpe, mas houve um erro ao buscar os dados!".
-- Alguns ajustes para ser melhor exibido em dispositivos menores e favicon.
-
 # Configuração do Vue
 ## Project setup
 Na raiz do projeto rodar:
