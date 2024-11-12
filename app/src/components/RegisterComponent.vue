@@ -46,7 +46,7 @@ export default {
     async register() {
       try {
         await createUserWithEmailAndPassword(auth, this.email, this.password)
-        this.$router.push('/home')
+        this.$router.push('/login')
       } catch (error) {
         console.log('Erro ao se cadastrar: ' + error.message)
       }
