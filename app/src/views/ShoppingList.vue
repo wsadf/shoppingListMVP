@@ -93,7 +93,10 @@ export default {
         .map((item) => `${item.name} - ${item.quantity}`)
         .join('\n')
 
-      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(listText)}`
+      const phoneNumber = '5581999999999'
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+        listText
+      )}`
 
       window.open(whatsappUrl, '_blank')
     },
